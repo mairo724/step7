@@ -40,6 +40,7 @@ class ProductNewRegisterController extends Controller
     // トランザクション開始
     DB::beginTransaction();
 
+    
     try {
         // 登録処理呼び出し
         $model = new ProductNewRegisters();

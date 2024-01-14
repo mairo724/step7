@@ -63,9 +63,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button onclick="location.href='../public/register'"  class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Return') }}
+                                </button>                                
                             </div>
                         </div>
                     </form>

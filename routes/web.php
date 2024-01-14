@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/product_list', [App\Http\Controllers\ProductListController::class, 'index'])->name('product_list');
+
+Route::get('/product_new_register', [App\Http\Controllers\ProductNewRegisterController::class, 'productNewRegister'])->name('product_new_register');
+Route::post('/product_new_register',[App\Http\Controllers\ProductNewRegisterController::class, 'productNewRegistsubmit'])->name('product_new_registSubmit');
+
+Route::get('/product_details_information', [App\Http\Controllers\ProductDetailsInformationController::class, 'index'])->name('product_details_information');
+
+Route::get('/product_information_edit', [App\Http\Controllers\ProductInformationEditController::class, 'index'])->name('product_information_edit');

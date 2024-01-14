@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ProductLists;
 
-class HomeController extends Controller
+class ProductListController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,8 +22,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
     public function index()
     {
-        return view('home');
+
+        $model = new ProductLists();
+        $products = $model->getList();
+
+        return view('product_list', ['products' => $products]);
+
     }
+
+
 }

@@ -26,7 +26,7 @@ class SalesController extends Controller
     public function index()
     {
 
-        $model = new ProductLists();
+        $model = new Sales();
         $products = $model->getList();
 
         return view('product_list', ['products' => $products]);

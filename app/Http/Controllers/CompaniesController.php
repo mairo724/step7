@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProductLists;
 
-class SalesController extends Controller
+class CompaniesController extends Controller
 {
     /**
      * Create a new controller instance.

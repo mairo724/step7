@@ -6,12 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class ProductLists extends Model
+class Companies extends Model
 {
-    public function getList() {
-        // productsテーブルからデータを取得
-        $products = DB::table('products')->get();
 
-        return $products;
+    // use HasFactory;
+
+    protected $table = 'companies';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'company_name',
+        'street_address',
+        'representative',
+        'created_at',
+        'updated_at'
+    ];
+
+
+    public function getList() {
+        // Companiesテーブルからデータを取得
+        $companies = DB::table('companies')->get();
+        return $companies;
     }
+
+    
+
+
 }

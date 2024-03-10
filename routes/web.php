@@ -19,11 +19,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/product_list', [App\Http\Controllers\ProductListController::class, 'index'])->name('product_list');
 
-Route::get('/product_new_register', [App\Http\Controllers\ProductNewRegisterController::class, 'productNewRegister'])->name('product_new_register');
-Route::post('/product_new_register',[App\Http\Controllers\ProductNewRegisterController::class, 'productNewRegistsubmit'])->name('product_new_registSubmit');
-
-Route::get('/product_details_information', [App\Http\Controllers\ProductDetailsInformationController::class, 'index'])->name('product_details_information');
-
-Route::get('/product_information_edit', [App\Http\Controllers\ProductInformationEditController::class, 'index'])->name('product_information_edit');
+// 一覧画面の表示
+Route::get('/product_list', [App\Http\Controllers\ProductController::class, 'index'])->name('product_list');
+// リストの削除
+Route::post('/destroy{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('product_delete');
+// 登録画面の表示
+Route::get('/product_new_register', [App\Http\Controllers\productController::class, 'productNewRegister'])->name('product_new_register');
+// 登録画面の登録処理
+Route::post('/product_new_register',[App\Http\Controllers\ProductController::class, 'productNewRegistSubmit'])->name('product_new_regist_submit');
+// 詳細画面の表示
+Route::get('/product_details_information/{id}', [App\Http\Controllers\ProductController::class, 'productDetailsInformation'])->name('product_details_information');
+// 編集画面の表示
+Route::get('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productInformationEdit'])->name('product_information_edit');
+// 詳細画面の更新処理
+Route::post('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productDetailsInformationUpdate'])->name('product_details_information_update');

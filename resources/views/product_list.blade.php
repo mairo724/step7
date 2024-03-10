@@ -14,22 +14,40 @@
                         </div>
                     @endif
 
-    <div class="form-group">
-      <input type='text' id="keyword" class="form-control" placeholder="検索キーワード">
-    </div>
-
-    <div class="flex">
-        <select id="myselect">
-        <option value="" disabled selected style="display:none;">メーカー名</option>
-                            <option value="1">テスト</option>
-                            <option value="2">テス１</option>
-        </select>
-                    <button type="button" id="submit" class="btn">検索</button>
-    </div>
+<!-- 検索機能ここから -->
+<div >
+  <form action="{{ route('product_list') }}" method="GET" class="flex">
+    
+  @csrf
+<div class="flex">
+    
+        <div class="form-group form-inline input-group-sm">
+          <input type='text' id="keyword" class="form-control col-sm-10" name="keyword"  value="{{ old('$keyword')}}" placeholder="検索キーワード">
+          <span class="col-sm-2"></span>
+         <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('keyword')}" th:errors="*{keyword}"></span>
+        </div>
+    
+            <div>
+                <select id="myselect">
+                    <label for="company_name">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
+                    <option value="{{ old('$company_name')}}" disabled selected style="display:none;">メーカー名</option>
+                    @foreach ($products as $product)
+                                        <option value="old{company_name}">{{ $product->company_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+    
+                        <!-- <button type="button" id="submit" class="btn btn-light">検索</button> -->
+                        <div>
+                            <input type="submit" class="btn btn-light" value="検索">
+                        </div>
+</div>
+  </form>
+</div>
 
 
     <div class="ichiran">
-  <table>
+  <table class="table table-striped">
      <thead>
         <tr>
             <th>ID</th>
@@ -38,16 +56,33 @@
             <th>価格</th>
             <th>在庫数</th>
             <th>メーカー名</th>
-            <th></th>
-            <th></th>
-            <th><button type="button" id="submit" class="btn">新規登録</button></th>
+            <th><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-light">新規登録</button></th>
         </tr>
         
     </thead>
+
     <tbody>
-
-
-
+    @foreach ($products as $product)
+        <tr>
+            <td>{{ $product->id }}</td>
+            <td>{{ $product->img_path }}</td>
+            <td>{{ $product->product_name }}</td>
+            <td>{{ $product->price }}</td>
+            <td>{{ $product->stock }}</td>
+            <td>{{ $product->company_name }}</td>
+            <td><a href="{{ route('product_details_information', ['id'=>$product->id]) }}" class="btn btn-primary">詳細</a></td>
+            <td>
+             
+                <form action="{{ route('product_delete', ['id'=>$product->id]) }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger">削除</button>
+        </form>
+                <!-- <button type="button" onclick="location.href='{{ route('product_delete', ['id'=>$product->id])  }}'" id="submit" class="btn btn-danger" method="POST">削除</button></th> -->
+                <!-- <button type="submit" class="btn btn-danger">削除</button> -->
+              
+            </td>
+    @endforeach
+    </tr>
     </tbody>
   </table>
 </div>
@@ -56,7 +91,7 @@
     
                 
     <p id="result"></p>
-                    {{ __('aaaaaa') }}
+              
                 </div>
             </div>
         </div>

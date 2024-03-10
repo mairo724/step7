@@ -1,11 +1,11 @@
 @extends('layouts.app')
-
+<link rel="stylesheet" href="{{ asset('/css/product_details_infomation_style.css') }}">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('商品一覧画面') }}</div>
+                <div class="card-header">{{ __('商品情報詳細画面') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,54 +14,61 @@
                         </div>
                     @endif
 
-    <div class="form-group">
-      <input type='text' id="keyword" class="form-control" placeholder="検索キーワード">
-    </div>
+                    <div th:fragment="form">
 
-    <div class="flex">
-        <select id="myselect">
-        <option value="" disabled selected style="display:none;">メーカー名</option>
-                            <option value="1">テスト</option>
-                            <option value="2">テス１</option>
-        </select>
-                    <button type="button" id="submit" class="btn">検索</button>
-    </div>
+		<div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">ID</span>
+		    <span>{{$products -> id }}</span>
+			<span class="col-sm-2"></span>
+		</div>
+		<div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">商品画像</span>
+		    <div class="col-sm-2">{{$products ->img_path }} </div>
+			<span class="col-sm-2"></span>
+			<span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('img_path')}" th:errors="*{img_path}"></span>
+		</div>
 
+        <div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">商品名</span>
+		    <div>{{$products -> product_name }} </div>
+		    <span class="col-sm-2"></span>
+		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('publisher')}" th:errors="*{publisher}"></span>
+		</div>
+        <div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">メーカー</span>
+			<div>{{$products -> company_name }} </div>
+		    <span class="col-sm-2"></span>
+		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('publisher')}" th:errors="*{company_name}"></span>
+		</div>
+		<div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">価格</span>
+			<div>{{$products -> price}} </div>
+		    <span class="col-sm-2"></span>
+		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+		</div>
+        
+        <div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">在庫数</span>
+		    <div>{{$products -> stock}} </div>
+		    <span class="col-sm-2"></span>
+		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('price')}" th:errors="*{stock}"></span>
+		</div>
+		<div class="form-group form-inline input-group-sm">
+		    <span class="col-md-2 text-md-right">コメント</span>
+			<div>{{$products -> comment}} </div>
+		</div>
 
-    <div class="ichiran">
-  <table>
-     <thead>
-        <tr>
-            <th>ID</th>
-            <th>商品画像</th>
-            <th>商品名</th>
-            <th>価格</th>
-            <th>在庫数</th>
-            <th>メーカー名</th>
-            <th><button type="button" id="submit" class="btn">新規登録</button></th>
-        </tr>
-    </thead>
-    <tbody>
+		<a href="{{ route('product_information_edit',['id' => $products -> id ])}}" class="btn btn-primary">編集</a>
+            <a href="{{ route('product_list') }}" class="btn btn-primary">戻る</a>
 
-<tr>
-    <td>{{$id->id}}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-</tr>
+	</div>
+	</div>
 
-
-    </tbody>
-  </table>
-</div>
 
 
     
                 
-    <p id="result"></p>
-                    {{ __('aaaaaa') }}
+
                 </div>
             </div>
         </div>

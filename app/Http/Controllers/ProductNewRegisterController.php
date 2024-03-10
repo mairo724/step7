@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ProductNewRegisters;
+use App\Models\Products;
+use App\Models\Companies;
 use App\Http\Requests\ProductNewRegisterRequest;
 use Illuminate\Support\Facades\DB;
 

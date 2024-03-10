@@ -15,7 +15,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('product_id')->unsigned();
             $table->timestamps();
-            
         });
     }
     

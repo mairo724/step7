@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->integer('price');
             $table->integer('stock');
-            $table->text('comment')->nullable();
-            $table->text('img_path');
+            $table->string('comment')->nullable();
+            $table->string('img_path');
             $table->timestamps();
             
 

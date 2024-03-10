@@ -18,13 +18,18 @@ html {
 
   }
 
+
   select{
      padding: 0.4em;
      height: inherit;
   }
+  
   .form-group, select{
      padding-right: 0.8em;
+     border-bottom: #b2b2b2 0.8px solid;
+     margin-bottom: 0.7em;
   }
+  
   .button_mod{
      padding: 0.4em;
   }
@@ -32,15 +37,3 @@ html {
   th{
      padding: 0.6em;
   }
-
-  .flex{
-   display: flex;
-  }
-
-  input, button, select, optgroup, textarea {
-   margin: 0;
-   font-family: inherit;
-   font-size: inherit;
-   border: var(--bs-border-width) solid var(--bs-border-color);
-   line-height: inherit;
-}

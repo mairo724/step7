@@ -2,9 +2,13 @@
 
 html {
      font-family:”ヒラギノ角ゴ Pro W3″,”ＭＳ Ｐゴシック”,sans-serif;
-     background-color: rgb(163, 111, 109);
+     background-color: rgb(255, 255, 255);
+     /* background-color: rgb(163, 111, 109); */
+     /* background-image: url(../img/cola.png); */
+     /* background-size: 100% 100%; */
     }
 
+ 
 
     .card  {
      height: 80vh;
@@ -24,6 +28,7 @@ html {
   }
   .form-group, select{
      padding-right: 0.8em;
+     margin-bottom: 0.6em;
   }
   .button_mod{
      padding: 0.4em;
@@ -32,9 +37,11 @@ html {
   th{
      padding: 0.6em;
   }
+  tr{vertical-align: baseline;}
 
   .flex{
    display: flex;
+   justify-content: flex-end;
   }
 
   input, button, select, optgroup, textarea {
@@ -44,3 +51,109 @@ html {
    border: var(--bs-border-width) solid var(--bs-border-color);
    line-height: inherit;
 }
+
+.required{
+   color: rgb(255, 0, 72);
+   /* font-size: 0.8em; */
+   padding-left:0.1em;
+   vertical-align: top;
+   box-sizing: border-box;
+}
+
+
+セレクト要素の矢印
+
+select{
+   position: relative;
+   padding: 10px;
+   width: 100%;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ appearance: none;
+ }
+ 
+ .select-wrap {
+     position: relative;
+     width: 100%;
+ }
+ 
+ .select-wrap:after {
+   content: "";
+     position: absolute;
+     right: 25px;
+     top: 13px;
+     width: 10px;
+     height: 10px;
+     border-top: 2px solid #ccc;
+     border-left: 2px solid #ccc;
+     transform: translateY(-50%) rotate(
+ -135deg
+ );
+   font-size: 20px;
+   pointer-events: none;
+ }
+
+ .select-wrap-list {
+   position: relative;
+   width: 50%;
+}
+
+.select-wrap-list:after {
+ content: "";
+   position: absolute;
+   right: 25px;
+   top: 13px;
+   width: 10px;
+   height: 10px;
+   border-top: 2px solid #ccc;
+   border-left: 2px solid #ccc;
+   transform: translateY(-50%) rotate(
+-135deg
+);
+ font-size: 20px;
+ pointer-events: none;
+}
+
+.search{
+   margin-top: 7px;
+   margin-bottom: 15px;
+}
+
+thead{
+  background-color: rgb(58, 52, 43);
+}
+
+.new-btn{
+   position: relative;
+   /* padding-left: 55px; */
+   right: 28px;
+}
+
+td.img_list img{
+   width: 70px;
+}
+
+.table {
+   border-bottom: #b2b2b2 0.8px solid;
+/* border-bottom:solid 1px black ; */
+
+--bs-table-striped-bg: rgba(white, 1);
+--bs-table-bg: #ffffff;
+}
+
+tr{
+   background-color: rgb(255, 255, 255);
+}
+
+body{    background-color: #f8fafc00;
+   background-image: url(../img/cola.png);
+   /* background-color: rgb(228, 220, 219); */
+   /* background-color: rgba(245, 241, 240, 0.825); */
+   background-color: rgb(243, 237, 236);
+  /* background-color: rgb(255, 232, 186); */
+   background-size: 100% 100%; 
+}
+.card{
+   background-color: rgb(255, 255, 255);
+}
+

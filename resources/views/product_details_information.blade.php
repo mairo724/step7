@@ -23,11 +23,15 @@
 		</div>
 		<div class="form-group form-inline input-group-sm">
 		    <span class="col-md-2 text-md-right">商品画像</span>
-		    <div class="col-sm-2">{{$products ->img_path }} </div>
+			@if($products->img_path==NULL)
+			<div class="col-sm-2">画像なし</div>
+            @else
+			<div class="col-sm-2"><img src="{{ asset($products->img_path) }}"></div>
+            @endif
+		    <!-- <div class="col-sm-2">{{$products ->img_path }} </div> -->
 			<span class="col-sm-2"></span>
 			<span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('img_path')}" th:errors="*{img_path}"></span>
 		</div>
-
         <div class="form-group form-inline input-group-sm">
 		    <span class="col-md-2 text-md-right">商品名</span>
 		    <div>{{$products -> product_name }} </div>
@@ -42,7 +46,7 @@
 		</div>
 		<div class="form-group form-inline input-group-sm">
 		    <span class="col-md-2 text-md-right">価格</span>
-			<div>{{$products -> price}} </div>
+			<div>￥{{$products -> price}}</div>
 		    <span class="col-sm-2"></span>
 		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
 		</div>
@@ -64,10 +68,6 @@
 	</div>
 	</div>
 
-
-
-    
-                
 
                 </div>
             </div>

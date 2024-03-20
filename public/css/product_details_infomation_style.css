@@ -19,6 +19,7 @@ html {
   }
 
 
+
   select{
      padding: 0.4em;
      height: inherit;
@@ -27,7 +28,8 @@ html {
   .form-group, select{
      padding-right: 0.8em;
      border-bottom: #b2b2b2 0.8px solid;
-     margin-bottom: 0.7em;
+     margin-bottom: 0.8em;
+     /* display: flex; */
   }
   
   .button_mod{
@@ -36,4 +38,11 @@ html {
 
   th{
      padding: 0.6em;
+  }
+
+  .col-md-2 text-md-right{
+   font-size: 400px;
+  }
+  .col-sm-2 img{
+   width: 150px;
   }

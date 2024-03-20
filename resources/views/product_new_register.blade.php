@@ -14,10 +14,10 @@
                         </div>
                     @endif
 
-<form action="{{route( 'product_new_regist_submit' )}}" method="post" >
+<form action="{{route( 'product_new_regist_submit' )}}" method="post" enctype='multipart/form-data'>
 @csrf
         <div class="form-group form-inline input-group-sm">
-		<label class="col-md-2 text-md-right" for="product_name">商品名</label>
+		<label class="col-md-2 text-md-right" for="product_name">商品名<span class="required">*</span></label>
 		    <input type="text" class="form-control col-sm-10" id="product_name" name="product_name" value="{{ old('product_name')}}" placeholder="商品名">
 		    <span class="col-sm-2"></span>
 			@if($errors->has('product_name'))     
@@ -25,14 +25,28 @@
 			@endif
 		</div>
 
-	<div>
+	
 		<!-- companyidでとる？ -->
-		<label for="company_id">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
-		<select id="company_id" name="company_id">
+		
+		<label for="company_id">{{ __('メーカー名')}}<span class="required">*</span></label>
+		<div class="form-group form-inline input-group-sm select-wrap">
+		<select id="company_id" class="form-control"  name="company_id" value="{{ old('company_id')}}">
+
+		<option value="{{ old('$company_id')}}" selected style="display:none;">メーカー名</option>
 			@foreach ($companies as $company)
 			<option value="{{$company->id}}">{{ $company->company_name}}</option>
 			@endforeach
+
         </select>
+		@if($errors->has('company_id'))     
+		    <span class="col-sm-10 text-danger small">{{ $errors->first('company_id') }}</span>
+			@endif
+	
+		<!-- <select class="form-control" name="company_id" id="company_id" value="{{ old('company_id')}}">
+  @foreach ($companies as $company)
+    <option value='{{$company->id}}'>{{ $company->company_name }}</option>
+  @endforeach
+  </select> -->
 	</div>
 
         <!-- <div class="form-group form-inline input-group-sm">
@@ -44,7 +58,7 @@
 			@endif
 		</div> -->
 		<div class="form-group form-inline input-group-sm">
-		<label class="col-md-2 text-md-right" for="price">価格</label>
+		<label class="col-md-2 text-md-right" for="price">価格<span class="required">*</span></label>
 		    <input type="number" class="form-control col-sm-10" id="price" name="price" value="{{ old('price')}}" placeholder="価格">
 		    <span class="col-sm-2"></span>
 			@if($errors->has('price'))     
@@ -53,7 +67,7 @@
 		</div>
         
         <div class="form-group form-inline input-group-sm">
-		<label class="col-md-2 text-md-right" for="stock">在庫数</label>
+		<label class="col-md-2 text-md-right" for="stock">在庫数<span class="required">*</span></label>
 		    <input type="number" class="form-control col-sm-10" id="stock" name="stock" value="{{ old('stock')}}" placeholder="在庫数">
 		    <span class="col-sm-2"></span>
 			@if($errors->has('stock'))     
@@ -72,7 +86,7 @@
 
 		<div class="form-group form-inline input-group-sm">
 		    <span class="col-md-2 text-md-right">商品画像</span>
-		    <input type="file" class="form-control col-sm-10" id="img_path" name="img_path" value="old{img_path}" placeholder="画像">
+		    <input type="file" accept=".png, .jpg, .jpeg, .pdf" class="form-control col-sm-10" id="img_path" name="img_path" value="old{img_path}" placeholder="画像">
 			<span class="col-sm-2"></span>
 			@if($errors->has('img_path'))     
 		    <span class="col-sm-10 text-danger small">{{ $errors->first('img_path') }}</span>
@@ -88,11 +102,6 @@
 
 	</div>
 
-
-
-    
-                
-
                 </div>
             </div>
         </div>
@@ -101,50 +110,3 @@
 @endsection
 
 
-
-
-<!-- 
-
-<div th:fragment="form">
-
-<form action="{{route('product_new_regist_submit')}}" method="POST" >
-@csrf
-        <div class="form-group form-inline input-group-sm">
-		    <span class="col-md-2 text-md-right">商品名</span>
-		    <input type="text" class="form-control col-sm-10" id="product_name" name="product_name" th:value="old{product_name}" placeholder="商品名">
-		    <span class="col-sm-2"></span>
-		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('product_name')}" th:errors="*{product_name}"></span>
-		</div>
-        <div class="form-group form-inline input-group-sm">
-		    <span class="col-md-2 text-md-right">メーカー名</span>
-		    <input type="text" class="form-control col-sm-10" id="company_name" name="company_name" th:value="old{company_name}" placeholder="メーカー">
-		    <span class="col-sm-2"></span>
-		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('company_name')}" th:errors="*{company_name}"></span>
-		</div>
-		<div class="form-group form-inline input-group-sm">
-		    <span class="col-md-2 text-md-right">価格</span>
-		    <input type="number" class="form-control col-sm-10" id="price" name="price" th:value="old{price}" placeholder="価格">
-		    <span class="col-sm-2"></span>
-		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
-		</div>
-        
-        <div class="form-group form-inline input-group-sm">
-		    <span class="col-md-2 text-md-right">在庫数</span>
-		    <input type="number" class="form-control col-sm-10" id="stock" name="stock" th:value="old{stock}" placeholder="在庫数">
-		    <span class="col-sm-2"></span>
-		    <span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
-		</div>
-		<div class="form-group form-inline input-group-sm">
-		    <span class="col-md-2 text-md-right">商品画像</span>
-		    <input type="file" class="form-control col-sm-10" id="img_path" name="img_path" th:value="old{img_path}" placeholder="画像">
-			<span class="col-sm-2"></span>
-			<span class="col-sm-10 text-danger small" th:if="${#fields.hasErrors('img_path')}" th:errors="*{img_path}"></span>
-		</div>
-
-		<button type="submit" class="btn btn-primary">登録</button>
-<input type="submit" class="btn btn-primary" value="登録">
-
-            <a href="{{ route('product_list') }}" class="btn btn-primary">戻る</a>
-</form>
-
-	</div> -->

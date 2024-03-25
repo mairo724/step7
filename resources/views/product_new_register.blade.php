@@ -81,7 +81,7 @@
 		</div>
 			<span class="col-sm-2"></span>
 			@if($errors->has('comment'))     
-		    <span class="col-sm-10 text-danger small">{{ $errors->first('stock') }}</span>
+		    <span class="col-sm-10 text-danger small">{{ $errors->first('comment') }}</span>
 			@endif
 
 		<div class="form-group form-inline input-group-sm">
@@ -95,9 +95,9 @@
 
 		<!-- <button type="submit" class="btn btn-primary">登録</button> -->
 
-		<input type="submit" class="btn btn-primary" value="登録">
+		<input type="submit" class="btn btn-outline-dark" value="登録">
 
-            <a href="{{ route('product_list') }}" class="btn btn-primary">戻る</a>
+            <a href="{{ route('product_list') }}" class="btn btn-outline-primary">戻る</a>
 </form>
 
 	</div>

@@ -1,10 +1,5 @@
 @charset "utf-8";
 
-html {
-     font-family:”ヒラギノ角ゴ Pro W3″,”ＭＳ Ｐゴシック”,sans-serif;
-     background-color: rgb(163, 111, 109);
-    }
-
 
     .card  {
      height: 80vh;
@@ -46,3 +41,5 @@ html {
   .col-sm-2 img{
    width: 150px;
   }
+
+  

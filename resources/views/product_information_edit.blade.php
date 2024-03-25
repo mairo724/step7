@@ -81,9 +81,9 @@
 		    <textarea class="form-control col-sm-10" cols="22" rows="3" id="comment" name="comment"
 		    	th:text="{{$products -> comment}}"  placeholder="コメント">{{$products -> comment}}</textarea>
 		</div>
-<input type="submit" class="btn btn-primary" value="登録">
+<input type="submit" class="btn btn-outline-dark" value="登録">
 		<!-- <a href="{{ route('product_information_edit',['id' => $products -> id ])}}" class="btn btn-primary">更新</a> -->
-            <a href="{{ route('product_list') }}" class="btn btn-primary">一覧画面へ戻る</a>
+            <a href="{{ route('product_list') }}" class="btn btn-outline-primary">戻る</a>
 	</div>
 </form>
 

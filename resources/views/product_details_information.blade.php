@@ -1,6 +1,7 @@
 @extends('layouts.app')
-<link rel="stylesheet" href="{{ asset('/css/product_details_infomation_style.css') }}">
+
 @section('content')
+<link rel="stylesheet" href="{{ asset('/css/product_details_infomation_style.css') }}">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,7 +15,7 @@
                         </div>
                     @endif
 
-                    <div th:fragment="form">
+     <div th:fragment="form">
 
 		<div class="form-group form-inline input-group-sm">
 		    <span class="col-md-2 text-md-right">ID</span>
@@ -62,11 +63,11 @@
 			<div>{{$products -> comment}} </div>
 		</div>
 
-		<a href="{{ route('product_information_edit',['id' => $products -> id ])}}" class="btn btn-primary">編集</a>
-            <a href="{{ route('product_list') }}" class="btn btn-primary">戻る</a>
+		<a href="{{ route('product_information_edit',['id' => $products -> id ])}}" class="btn btn-outline-dark">編集</a>
+            <a href="{{ route('product_list') }}" class="btn btn-outline-primary">戻る</a>
 
 	</div>
-	</div>
+
 
 
                 </div>

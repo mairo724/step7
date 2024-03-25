@@ -13,26 +13,26 @@ class Products extends Model
 
 // エクロアントでDB登録する時に許可の処理が必要なのですか？？質問する
 
-    protected $table = 'products';
+    // protected $table = 'products';
 
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
-    protected $fillable = [
-        'product_name',
-        'price',
-        'stock',
-        'comment',
-        'img_path',
-        'company_id',
-        'created_at',
-        'updated_at'
-    ];
+    // protected $fillable = [
+    //     'product_name',
+    //     'price',
+    //     'stock',
+    //     'comment',
+    //     'img_path',
+    //     'company_id',
+    //     'created_at',
+    //     'updated_at'
+    // ];
 
 
 
     public function getList() {
         // productsテーブルのcompany_id'とcompaniesテーブルのidを結合して全てのデータをとる
-        $products = DB::table('products')
+        $products = DB::table('products')->paginate(2)
         ->join('companies', 'products.company_id','=','companies.id')
         ->select('products.*', 'companies.company_name')
         ->get();

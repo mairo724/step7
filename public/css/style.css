@@ -2,7 +2,8 @@
 
 html {
      font-family:”ヒラギノ角ゴ Pro W3″,”ＭＳ Ｐゴシック”,sans-serif;
-     background-color: rgb(255, 255, 255);
+     background-color: rgb(243, 237, 236);
+     /* background-color: rgb(255, 255, 255); */
      /* background-color: rgb(163, 111, 109); */
      /* background-image: url(../img/cola.png); */
      /* background-size: 100% 100%; */
@@ -156,4 +157,5 @@ body{    background-color: #f8fafc00;
 .card{
    background-color: rgb(255, 255, 255);
 }
+
 

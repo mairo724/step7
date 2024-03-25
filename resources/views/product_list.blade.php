@@ -99,18 +99,16 @@
             </td>
     @endforeach
     </tr>
-    </tbody>
+    </tbody> 
   </table>
-</div>
+</div>          
 
-
-    
-                
     <p id="result"></p>
-              
+  
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 @endsection

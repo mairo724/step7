@@ -51,7 +51,6 @@ class ProductController extends Controller
             $products = $model->SearchList($searchKeyword,$searchMaker);
         }
         return view('product_list', ['products' => $products, 'companies' => $companies, 'searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]); 
-
         // $model2 = new Companies();
         // $articles = $model2->showCompanyName();
 

@@ -26,7 +26,7 @@ class ProductNewRegisterRequest extends FormRequest
             'company_id' => 'required | max:15',
             'price' => 'required | max:255 | alpha_num',
             'stock' => 'required | max:255 | alpha_num',
-            'comment' => 'max:10000',
+            'comment' => 'max:255',
             'img_path' => ' | file  | image',            
         ];
     }

@@ -25,27 +25,22 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-
        // 一覧表示  
     public function index(Request $request)
     {
-     
+
         $model = new Products();
         $companymodel = new Companies();
         $companies = $companymodel->getList();
-
         $searchKeyword = $request->input('search-keyword');
         $searchMaker = $request->input('search-maker');
-        // $company_name=$request->input('company_name');
-
+        //$company_name=$request->input('company_name');
         //$products = new Products();
         //$company = new Companies();
-
         //$products = $products->SearchList($searchKeyword,$searchMaker);
 
         if($searchKeyword==='' && $searchMaker===''){
             $products = $model->getList();
-
         }
         else{
             $products = $model->SearchList($searchKeyword,$searchMaker);
@@ -53,11 +48,8 @@ class ProductController extends Controller
         return view('product_list', ['products' => $products, 'companies' => $companies, 'searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]); 
         // $model2 = new Companies();
         // $articles = $model2->showCompanyName();
-
         // return view('product_list', ['companies' => $companies]);
     }
-
-
 
     // 新規登録画面に遷移
     public function productNewRegister() {
@@ -149,7 +141,6 @@ class ProductController extends Controller
 
 
       // 詳細編集投稿機能！
-
       
     public function productDetailsInformationUpdate(ProductNewRegisterRequest $request, $id) {
     
@@ -204,7 +195,6 @@ class ProductController extends Controller
           return redirect()->route('product_information_edit',['id' => $products-> id ]);
       }
 
-
         /**
      * 削除処理
      */
@@ -219,31 +209,21 @@ class ProductController extends Controller
             // 削除機能
         public function delete($id)
         {
-     
+            // 指定されたIDのレコードを削除
             $product = Products::find($id);
-            
-            $product->delete();
-            
+            $product->delete(); 
+            // 削除したら一覧画面にリダイレクト
             return redirect()->route('product_list');
         }
 
-
-
-
         // 検索機能
-
         public function search(ProductNewRegisterRequest $request){
-
             $searchKeyword = $request->input('search-keyword');
             $searchMaker = $request->input('search-maker');
             // $company_name=$request->input('company_name');
-    
             $products = new Products();
-            $company = new Companies();
-    
-            $products = $products->SearchList($searchKeyword,$searchMaker);
-           
-    
+            // $company = new Companies();
+            $products = $products->SearchList($searchKeyword,$searchMaker);      
             return view('product_list', ['searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]);
         }
     

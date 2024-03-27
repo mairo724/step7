@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Companies extends Model
 {
 
-    // use HasFactory;
+    use HasFactory;
 
     protected $table = 'companies';
 
@@ -23,14 +23,10 @@ class Companies extends Model
         'updated_at'
     ];
 
-
     public function getList() {
         // Companiesテーブルからデータを取得
         $companies = DB::table('companies')->get();
         return $companies;
     }
-
-    
-
 
 }

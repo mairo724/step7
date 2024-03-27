@@ -9,8 +9,6 @@ html {
      /* background-size: 100% 100%; */
     }
 
- 
-
     .card  {
      height: 80vh;
      background-color: rgb(255, 255, 255);
@@ -61,8 +59,7 @@ html {
    box-sizing: border-box;
 }
 
-
-セレクト要素の矢印
+/* セレクト要素の矢印 */
 
 select{
    position: relative;

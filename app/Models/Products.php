@@ -47,7 +47,7 @@ class Products extends Model
     }
          // リストに商品情報を新規登録する処理 formからPOSTで送られてきたデータは$requestに入っている
         //  ？？ 'company_name' のカラムがないというエラーが出る。DBのエラー？？バリデーションの見直し？？
-     public function registproduct($request,$img_path) {   
+     public function registProduct($request,$img_path) {   
         DB::table('products')->insert([
             // 'product_name' => $request-> input('product_name'),
             // 'price' => $request-> input('price'),
@@ -64,7 +64,7 @@ class Products extends Model
         ]);
     }
 
-    public function registproduct2($request) {   
+    public function registProduct2($request) {   
         DB::table('products')->insert([
             'product_name' => $request->product_name,
             'company_id' => $request->company_id,

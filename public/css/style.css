@@ -133,8 +133,9 @@ thead{
 }
 
 /* .new-btn{
+   width: 120px; 
    position: relative;
-   right: 28px;
+   left: 50px;
 } */
 
 td.img_list img{
@@ -159,15 +160,22 @@ body{    background-color: #f8fafc00;
    /* background-color: rgba(245, 241, 240, 0.825); */
    background-color: rgb(243, 237, 236);
   /* background-color: rgb(255, 232, 186); */
-   background-size: 100% 100%; 
+   background-size: auto 130%; 
 }
+
 .card{
-   background-color: rgb(255, 255, 255);
+   background-color: rgba(255, 255, 255);
+      --bs-card-spacer-y: 1rem;
+      --bs-card-spacer-x: 2.8rem;
 }
 
 .btn_width{
    width: 100px;
 }
+
 .btn_adj{
    text-align: end;
+   /* display: flex; */
+   /* justify-content: flex-end; */
 }
+

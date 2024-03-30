@@ -25,13 +25,13 @@
                                             <select name="search-maker" id="myselect" class="form-control">
                                                     <label for="company_name">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
                                                         <option value="">メーカー名</option>
-                                                            @foreach ($companies as $company)
-                                                                @if($searchMaker == $company->id)
+                                                            @foreach ( $companies as $company)
+                                                                @if( $searchMaker == $company->id)
                                                                     <!-- if -->
-                                                                    <option value="{{$company->id}}" selected>{{$company -> company_name }}</option>
+                                                                    <option value="{{ $company->id}}" selected>{{ $company -> company_name }}</option>
                                                                 @else
                                                                     <!-- else -->
-                                                                    <option value="{{$company->id}}">{{$company->company_name}} </option>		
+                                                                    <option value="{{ $company->id}}">{{ $company->company_name}} </option>		
                                                                 @endif
                                                             @endforeach
                                             </select>
@@ -57,14 +57,14 @@
                                     <th>在庫数</th>
                                     <th>メーカー名</th>
                                     <th class="btn_width"></th>
-                                    <th class="new-btn btn_width"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-dark">新規登録</button></th>
+                                    <th class="new-btn btn_width btn_adj"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-dark">新規登録</button></th>
                                 </tr>    
                             </thead>
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->id }}</td>
-                                            @if($product->img_path==NULL)
+                                            @if( $product->img_path==NULL)
                                                 <td class="img_list"><img src="../public/img/ni.png"></td>
                                             @else
                                             <td class="img_list"><img src="{{ asset($product->img_path) }}"></td>

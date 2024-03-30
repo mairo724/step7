@@ -33,7 +33,8 @@ class Products extends Model
         $products = DB::table('products')
         ->join('companies', 'products.company_id','=','companies.id')
         ->select('products.*', 'companies.company_name')
-        ->get();
+        ->simplepaginate(10);
+        // dd($products);
         return $products;
     }
      // productsテーブルのcompany_id'とcompaniesテーブルのidを結合してproductsテーブルのIDと$idを紐づけて合致したものの最初の一行をとる
@@ -213,15 +214,17 @@ class Products extends Model
            ->select('products.*','companies.company_name')
            ->where('products.product_name', 'LIKE', "%$searchKeyword%")
            ->where('companies.id', 'LIKE', "%$searchMaker%")
-           ->get();
-           
+           ->simplepaginate(5);
+        //    ->get();
+
         }elseif($searchMaker!==''){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
         //    ->where('products.product_name', 'LIKE', "%$searchKeyword%")
            ->where('companies.id', 'LIKE', "%$searchMaker%")
-           ->get();
+           ->simplepaginate(10);
+        //    ->get();
            
         }elseif($searchKeyword!==''){
            $products=DB::table('products')
@@ -229,7 +232,8 @@ class Products extends Model
            ->select('products.*','companies.company_name')
            ->where('products.product_name', 'LIKE', "%$searchKeyword%")
         //    ->where('companies.id', 'LIKE', "%$searchMaker%")
-           ->get();
+            ->simplepaginate(10);
+        //    ->get();
         }
            return $products;
     }

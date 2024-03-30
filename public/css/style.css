@@ -38,10 +38,17 @@ html {
   }
   tr{vertical-align: baseline;}
 
-  .flex{
+  .searchflex{
    display: flex;
    justify-content: flex-end;
   }
+
+  .flex {
+   display: flex;
+   justify-content: center;
+   position: relative;
+   top: -8px;
+}
 
   input, button, select, optgroup, textarea {
    margin: 0;
@@ -117,18 +124,21 @@ select{
    margin-bottom: 15px;
 }
 
+.search_keyword, .search_maker{
+   width: 200px;
+}
+
 thead{
   background-color: rgb(58, 52, 43);
 }
 
-.new-btn{
+/* .new-btn{
    position: relative;
-   /* padding-left: 55px; */
    right: 28px;
-}
+} */
 
 td.img_list img{
-   width: 70px;
+   width: 35px;
 }
 
 .table {
@@ -155,4 +165,9 @@ body{    background-color: #f8fafc00;
    background-color: rgb(255, 255, 255);
 }
 
-
+.btn_width{
+   width: 100px;
+}
+.btn_adj{
+   text-align: end;
+}

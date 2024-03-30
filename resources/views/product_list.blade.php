@@ -14,14 +14,14 @@
                         @endif
                         <!-- 検索機能ここから -->
                         <div>
-                            <form action="{{ route('product_list') }}" method="GET" class="flex">      
+                            <form action="{{ route('product_list') }}" method="GET" class="form">      
                             @csrf
-                                <div class="search flex">    
-                                        <div class="form-group form-inline input-group-sm">
+                                <div class="search searchflex">    
+                                        <div class="form-group form-inline input-group-sm search_keyword">
                                             <input type='text' id="search-keyword"  name="search-keyword" class="form-control col-sm-10"  value="{{ $searchKeyword}}" placeholder="検索キーワード">
                                             <span class="col-sm-2"></span>
                                         </div>
-                                        <div class="form-group form-inline input-group-sm select-wrap-list">
+                                        <div class="form-group form-inline input-group-sm select-wrap-list search_maker">
                                             <select name="search-maker" id="myselect" class="form-control">
                                                     <label for="company_name">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
                                                         <option value="">メーカー名</option>
@@ -56,8 +56,8 @@
                                     <th>価格</th>
                                     <th>在庫数</th>
                                     <th>メーカー名</th>
-                                    <th></th>
-                                    <th class="new-btn"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-outline-dark">新規登録</button></th>
+                                    <th class="btn_width"></th>
+                                    <th class="new-btn btn_width"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-dark">新規登録</button></th>
                                 </tr>    
                             </thead>
                             <tbody>
@@ -74,8 +74,8 @@
                                         <td>￥{{ $product->price }}</td>
                                         <td>{{ $product->stock }}</td>
                                         <td>{{ $product->company_name }}</td>
-                                        <td><a href="{{ route('product_details_information', ['id'=>$product->id]) }}" class="btn btn-outline-primary">詳細</a></td>
-                                        <td>
+                                        <td class="btn_adj"><a href="{{ route('product_details_information', ['id'=>$product->id]) }}" class="btn btn-outline-primary">詳細</a></td>
+                                        <td class="btn_adj">
                                             <form action="{{ route('product_delete', ['id'=>$product->id]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-outline-danger" value="削除" onclick='return confirm("本当に削除しますか？")'>削除</button>
@@ -87,6 +87,9 @@
                                 @endforeach                           
                             </tbody> 
                         </table>
+                        <div>
+                            <div>{{ $products->links() }}</div>
+                        </div>
                     </div>          
                 </div>
             </div>

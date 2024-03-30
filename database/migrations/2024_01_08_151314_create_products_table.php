@@ -18,10 +18,8 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->string('comment')->nullable();
-            $table->string('img_path');
-            $table->timestamps();
-            
-
+            $table->string('img_path')->nullable();
+            $table->timestamps()->notnull();
         });
     }
 

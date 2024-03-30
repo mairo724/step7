@@ -39,11 +39,14 @@ class ProductController extends Controller
         //$company = new Companies();
         //$products = $products->SearchList($searchKeyword,$searchMaker);
 
-        if($searchKeyword==='' && $searchMaker===''){
+        // if($searchKeyword==='' && $searchMaker===''){
+        if (is_null($searchKeyword) && is_null($searchMaker)) {
             $products = $model->getList();
+            // dd('一覧');
         }
         else{
             $products = $model->SearchList($searchKeyword,$searchMaker);
+            // dd('kennsaku');
         }
         return view('product_list', ['products' => $products, 'companies' => $companies, 'searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]); 
         // $model2 = new Companies();

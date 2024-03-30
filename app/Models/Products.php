@@ -198,7 +198,7 @@ class Products extends Model
     //        return $products;
     // }
 
-    public function SearchList($searchKeyword,$searchMaker){
+    public function SearchList($search_keyword,$search_maker){
         //  検索処理
         //  { $results = DB::table('products') 
         //     ->join('companies', 'products.company_id', '=', 'companies.id') 
@@ -208,32 +208,37 @@ class Products extends Model
         //     ->paginate(10)
         //     ->get(); 
             // }
-        if($searchKeyword!==''&&$searchMaker!==''){
+        //この書き方だと分岐されない
+        // if($search_keyword!==''&&$search_maker!==''){
+        if(!is_null($search_keyword) && !is_null($search_maker)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
-           ->where('products.product_name', 'LIKE', "%$searchKeyword%")
-           ->where('companies.id', 'LIKE', "%$searchMaker%")
-           ->simplepaginate(5);
-        //    ->get();
-
-        }elseif($searchMaker!==''){
-           $products=DB::table('products')
-           ->join('companies','products.company_id','=','companies.id')
-           ->select('products.*','companies.company_name')
-        //    ->where('products.product_name', 'LIKE', "%$searchKeyword%")
-           ->where('companies.id', 'LIKE', "%$searchMaker%")
+           ->where('products.product_name', 'LIKE', "%$search_keyword%")
+           ->where('companies.id', 'LIKE', "%$search_maker%")
            ->simplepaginate(10);
         //    ->get();
-           
-        }elseif($searchKeyword!==''){
+        // dd('a');
+        }elseif(!is_null($search_maker)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
-           ->where('products.product_name', 'LIKE', "%$searchKeyword%")
-        //    ->where('companies.id', 'LIKE', "%$searchMaker%")
+        //    ->where('products.product_name', 'LIKE', "%$search_keyword%")
+           ->where('companies.id', 'LIKE', "%$search_maker%")
+           ->simplepaginate(10);
+        //    dd('2');
+        //    ->get();
+       //    ->get();
+           
+        }elseif(!is_null($search_keyword)){
+           $products=DB::table('products')
+           ->join('companies','products.company_id','=','companies.id')
+           ->select('products.*','companies.company_name')
+           ->where('products.product_name', 'LIKE', "%$search_keyword%")
+        //    ->where('companies.id', 'LIKE', "%$search_maker%")
             ->simplepaginate(10);
         //    ->get();
+        // dd('3');
         }
            return $products;
     }

@@ -18,15 +18,15 @@
                             @csrf
                                 <div class="search searchflex">    
                                         <div class="form-group form-inline input-group-sm search_keyword">
-                                            <input type='text' id="search-keyword"  name="search-keyword" class="form-control col-sm-10"  value="{{ $searchKeyword}}" placeholder="検索キーワード">
+                                            <input type='text' id="searchKeyword"  name="searchKeyword" class="form-control col-sm-10"  value="{{ $search_keyword}}" placeholder="検索キーワード">
                                             <span class="col-sm-2"></span>
                                         </div>
                                         <div class="form-group form-inline input-group-sm select-wrap-list search_maker">
-                                            <select name="search-maker" id="myselect" class="form-control">
+                                            <select name="searchMaker" id="myselect" class="form-control">
                                                     <label for="company_name">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
                                                         <option value="">メーカー名</option>
                                                             @foreach ( $companies as $company)
-                                                                @if( $searchMaker == $company->id)
+                                                                @if( $search_maker == $company->id)
                                                                     <!-- if -->
                                                                     <option value="{{ $company->id}}" selected>{{ $company -> company_name }}</option>
                                                                 @else

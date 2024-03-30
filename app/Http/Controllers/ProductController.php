@@ -32,23 +32,23 @@ class ProductController extends Controller
         $model = new Products();
         $companymodel = new Companies();
         $companies = $companymodel->getList();
-        $searchKeyword = $request->input('search-keyword');
-        $searchMaker = $request->input('search-maker');
+        $search_keyword = $request->input('searchKeyword');
+        $search_maker = $request->input('searchMaker');
         //$company_name=$request->input('company_name');
         //$products = new Products();
         //$company = new Companies();
-        //$products = $products->SearchList($searchKeyword,$searchMaker);
+        //$products = $products->SearchList($search_keyword,$search_maker);
 
-        // if($searchKeyword==='' && $searchMaker===''){
-        if (is_null($searchKeyword) && is_null($searchMaker)) {
+        // if($search_keyword==='' && $search_maker===''){
+        if (is_null($search_keyword) && is_null($search_maker)) {
             $products = $model->getList();
             // dd('一覧');
         }
         else{
-            $products = $model->SearchList($searchKeyword,$searchMaker);
+            $products = $model->SearchList($search_keyword,$search_maker);
             // dd('kennsaku');
         }
-        return view('product_list', ['products' => $products, 'companies' => $companies, 'searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]); 
+        return view('product_list', ['products' => $products, 'companies' => $companies, 'search_keyword'=>$search_keyword,'search_maker'=>$search_maker]); 
         // $model2 = new Companies();
         // $articles = $model2->showCompanyName();
         // return view('product_list', ['companies' => $companies]);
@@ -111,10 +111,6 @@ class ProductController extends Controller
           return redirect(route('product_new_register'));
       }
 
-
-
-
-
        // 詳細画面表示 
 
     public function productDetailsInformation($id) {
@@ -125,7 +121,6 @@ class ProductController extends Controller
         return view('product_details_information' , ['products' => $products]);
 
     }
-
 
        // 詳細編集画面表示
 
@@ -142,7 +137,6 @@ class ProductController extends Controller
 
     }
 
-
       // 詳細編集投稿機能！
       
     public function productDetailsInformationUpdate(ProductNewRegisterRequest $request, $id) {
@@ -150,7 +144,6 @@ class ProductController extends Controller
 //         if($request->hasFile('img_path')){
 //             //①画像ファイルの取得
 //             $img_path = $request->file('img_path');
-
 //             //②画像ファイルのファイル名を取得
 //             $file_name = $img_path->getClientOriginalName();
 //             // dd($file_name);
@@ -187,7 +180,7 @@ class ProductController extends Controller
 
         $products->productDetailsInformationUpdate($request, $products,$img_path);
         }else{
-            $products->productDetailsInformationUpdate2($request, $products);
+        $products->productDetailsInformationUpdate2($request, $products);
         }
        
         $companies = $products ->getList();
@@ -221,13 +214,13 @@ class ProductController extends Controller
 
         // 検索機能
         public function search(ProductNewRegisterRequest $request){
-            $searchKeyword = $request->input('search-keyword');
-            $searchMaker = $request->input('search-maker');
+            $search_keyword = $request->input('searchKeyword');
+            $search_maker = $request->input('searchMaker');
             // $company_name=$request->input('company_name');
             $products = new Products();
             // $company = new Companies();
-            $products = $products->SearchList($searchKeyword,$searchMaker);      
-            return view('product_list', ['searchKeyword'=>$searchKeyword,'searchMaker'=>$searchMaker]);
+            $products = $products->SearchList($search_keyword,$search_maker);      
+            return view('product_list', ['search_keyword'=>$search_keyword,'search_maker'=>$search_maker]);
         }
     
 

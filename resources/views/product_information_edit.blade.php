@@ -17,23 +17,18 @@
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">ID</span>
 									<span>{{$products -> id }}</span>
-									<span class="col-sm-2"></span>
 								</div>
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">商品画像</span>
 									<input type="file" accept=".png, .jpg, .jpeg, .pdf" class="form-control col-sm-10" id="img_path" name="img_path" value="{{ $products -> img_path }}" placeholder="画像">
-									<span class="col-sm-2"></span>
 									@if($errors->has('img_path'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('img_path') }}</span>
 									@endif
 									<!-- {{ $products -> img_path }} -->
-
 								</div>
-
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">商品名<span class="required">*</span></span>
 									<input type="text" class="form-control col-sm-10" id="product_name" name="product_name" value="{{ $products -> product_name }}" placeholder="商品名">
-									<span class="col-sm-2"></span>
 									@if($errors->has('product_name'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('product_name') }}</span>
 									@endif
@@ -64,7 +59,6 @@
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">価格<span class="required">*</span></span>
 									<input type="number" class="form-control col-sm-10" id="price" name="price" value="{{ $products -> price }}" placeholder="価格">
-									<span class="col-sm-2"></span>
 									@if($errors->has('price'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('price') }}</span>
 									@endif
@@ -72,7 +66,6 @@
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">在庫数<span class="required">*</span></span>
 									<input type="number" class="form-control col-sm-10" id="stock" name="stock" value="{{$products -> stock}}" placeholder="在庫数">
-									<span class="col-sm-2"></span>
 									@if($errors->has('stock'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('stock') }}</span>
 									@endif

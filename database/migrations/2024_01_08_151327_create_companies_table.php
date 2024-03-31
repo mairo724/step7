@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('company_name');
-            $table->string('street_address');
-            $table->string('representative_name');
+            $table->increments('id')->unsigned();
+            $table->string('company_name', 30);
+            $table->string('street_address')->nullable();
+            $table->string('representative_name')->nullable();
             $table->timestamps();
-            
-
         });
     }
 
@@ -30,4 +28,3 @@ return new class extends Migration
         Schema::dropIfExists('companies');
     }
 };
-

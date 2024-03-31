@@ -22,12 +22,12 @@ class ProductNewRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_name' => 'required | max:15',
-            'company_id' => 'required | max:15',
-            'price' => 'required | max:255 | alpha_num',
-            'stock' => 'required | max:255 | alpha_num',
+            'product_name' => 'required | max:30',
+            'company_id' => 'required',
+            'price' => 'required | alpha_num',
+            'stock' => 'required | alpha_num',
             'comment' => 'max:255',
-            'img_path' => ' | file  | image',            
+            'img_path' => 'file  | image',            
         ];
     }
     /**
@@ -58,7 +58,6 @@ public function messages() {
         'product_name.required' => ':attributeは必須項目です。',
         'product_name.max' => ':attributeは:max字以内で入力してください。',
         'company_id.required' => ':attributeは必須項目です。',
-        'company_id.max' => ':attributeは:max字以内で入力してください。',
         'price.required' => ':attributeは必須項目です。',
         'stock.required' => ':attributeは必須項目です。',
         'comment.max' => ':attributeは:max字以内で入力してください。',

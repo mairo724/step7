@@ -38,7 +38,8 @@
    font-size: 400px;
   }
   .col-sm-2 img{
-   height: 150px;
+   height: 275px;
+   padding: 20px;
   }
 
   .imgflex{

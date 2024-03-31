@@ -51,7 +51,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>商品画像</th>
+                                    <th class="img_pos">商品画像</th>
                                     <th>商品名</th>
                                     <th>価格</th>
                                     <th>在庫数</th>
@@ -65,9 +65,9 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                             @if( $product->img_path==NULL)
-                                                <td class="img_list"><img src="../public/img/ni.png"></td>
+                                            <td class="img_list img_pos"><img src="../public/img/ni.png"></td>
                                             @else
-                                            <td class="img_list"><img src="{{ asset($product->img_path) }}"></td>
+                                            <td class="img_list img_pos"><img src="{{ asset($product->img_path) }}"></td>
                                             @endif
                                             <!-- <td>{{ $product->img_path }}</td> -->
                                         <td>{{ $product->product_name }}</td>

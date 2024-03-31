@@ -139,7 +139,7 @@ thead{
 } */
 
 td.img_list img{
-   width: 35px;
+   height: 35px;
 }
 
 .table {
@@ -179,3 +179,6 @@ body{    background-color: #f8fafc00;
    /* justify-content: flex-end; */
 }
 
+.img_pos{
+   text-align: center;
+}

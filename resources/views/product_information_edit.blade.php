@@ -20,7 +20,7 @@
 								</div>
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">商品画像</span>
-									<input type="file" accept=".png, .jpg, .jpeg, .pdf" class="form-control col-sm-10" id="img_path" name="img_path" value="{{ $products -> img_path }}" placeholder="画像">
+									<input type="file" accept=".png, .jpg, .jpeg, .pdf,.webp" class="form-control col-sm-10" id="img_path" name="img_path" value="{{ $products -> img_path }}" placeholder="画像">
 									@if($errors->has('img_path'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('img_path') }}</span>
 									@endif

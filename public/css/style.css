@@ -154,13 +154,17 @@ tr{
    background-color: rgb(255, 255, 255);
 }
 
-body{    background-color: #f8fafc00;
-   background-image: url(../img/cola.png);
-   /* background-color: rgb(228, 220, 219); */
-   /* background-color: rgba(245, 241, 240, 0.825); */
+/* body{    background-color: #f8fafc00;
+   background-image: url(../img/cola.png);s
    background-color: rgb(243, 237, 236);
-  /* background-color: rgb(255, 232, 186); */
    background-size: auto 130%; 
+} */
+body{    background-color: #f8fafc00;
+   background-image: url(../img/back.png);
+   /* background-color: rgb(75, 75, 75); */
+     background-color: rgb(169, 71, 71); 
+  background-blend-mode:lighten;
+   background-size: auto 60%; 
 }
 
 .card{

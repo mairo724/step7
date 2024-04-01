@@ -10,9 +10,6 @@ class Products extends Model
 {
     use HasFactory;
 
-
-// エクロアントでDB登録する時に許可の処理が必要ですか？？質問する
-
     protected $table = 'products';
 
     protected $primaryKey = 'id';
@@ -34,7 +31,6 @@ class Products extends Model
         ->join('companies', 'products.company_id','=','companies.id')
         ->select('products.*', 'companies.company_name')
         ->simplepaginate(10);
-        // dd($products);
         return $products;
     }
      // productsテーブルのcompany_id'とcompaniesテーブルのidを結合してproductsテーブルのIDと$idを紐づけて合致したものの最初の一行をとる
@@ -45,8 +41,7 @@ class Products extends Model
         ->where('products.id','=',$id)
         ->first();
     }
-         // リストに商品情報を新規登録する処理 formからPOSTで送られてきたデータは$requestに入っている
-        //  ？？ 'company_name' のカラムがないというエラーが出る。DBのエラー？？バリデーションの見直し？？
+
      public function registProduct($request,$img_path) {   
         DB::table('products')->insert([
             // 'product_name' => $request-> input('product_name'),
@@ -61,6 +56,8 @@ class Products extends Model
             'stock' => $request->stock,
             'comment' => $request->comment,
             'img_path' =>  $img_path,
+            'created_at' => NOW(),
+            'updated_at' => NOW(), 
         ]);
     }
 
@@ -71,30 +68,10 @@ class Products extends Model
             'price' => $request->price,
             'stock' => $request->stock,
             'comment' => $request->comment,
+            'created_at' => NOW(),
+            'updated_at' => NOW(), 
         ]);
     }
-
-    // public function registImg($img_path){
-       
-    //     DB::table('products')->insert([
-    //         'img_path' => $request->$img_path
-    //     ]);
-
-    // }
-
-    // public function registProduct($data) {
-    //     // 登録処理
-    //     DB::table('products') ->insert([
-    //         'product_name' => $data->product_name,
-    //         'price' => $data->price,
-    //         'stock' => $data->stock,
-    //         'comment' => $data->comment,
-    //         'img_path' => $data->img_path,
-    //         'company_id' => $data->company_id,
-    //         'created_at' => NOW(),
-    //         'updated_at' => NOW(), 
-    //     ]);
-    // }
 
     //  // リストから商品情報を削除する
     //  public function deleteProductById($id) {
@@ -103,7 +80,6 @@ class Products extends Model
     //     ->select('products.*','companies.company_name')
     //     ->where('products.id','=',$id)
     //     ->first();
-
     // }
 
      // 詳細画面を表示
@@ -126,7 +102,6 @@ class Products extends Model
     // }
     // $details = product_details_information::find(1)
    
-        //  ？？ddでバックしたら 'company_name'が取れていなかった クエリビルダとエクロアントで書き方が何か違う？まだよくわかっていない
     public function productDetailsInformationUpdate($request, $products, $img_path)
     {
         // 更新処理
@@ -137,10 +112,8 @@ class Products extends Model
             'stock' => $request->stock,
             'comment' => $request->comment,
             'img_path' => $img_path,
-            // 'updated_at' => NOW(),
-            // 'company_id' => $request->company_id ⭐️⭐️質問する！！⭐️
+            'updated_at' => NOW(),
         ])->save();
-        // dd($result);
         return $result;
     }
 
@@ -153,10 +126,8 @@ class Products extends Model
             'price' => $request->price,
             'stock' => $request->stock,
             'comment' => $request->comment,
-            // 'updated_at' => NOW(),
-            // 'company_id' => $request->company_id ⭐️⭐️質問する！！⭐️
+            'updated_at' => NOW(),
         ])->save();
-        // dd($result);
         return $result;
     }
 
@@ -207,8 +178,7 @@ class Products extends Model
         //     ->orWhere('companies.company_name', 'LIKE', "%{$keyword}%") 
         //     ->paginate(10)
         //     ->get(); 
-            // }
-        //この書き方だと分岐されない
+        // }
         // if($search_keyword!==''&&$search_maker!==''){
         if(!is_null($search_keyword) && !is_null($search_maker)){
            $products=DB::table('products')
@@ -217,28 +187,20 @@ class Products extends Model
            ->where('products.product_name', 'LIKE', "%$search_keyword%")
            ->where('companies.id', 'LIKE', "%$search_maker%")
            ->simplepaginate(10);
-        //    ->get();
-        // dd('a');
+
         }elseif(!is_null($search_maker)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
-        //    ->where('products.product_name', 'LIKE', "%$search_keyword%")
            ->where('companies.id', 'LIKE', "%$search_maker%")
            ->simplepaginate(10);
-        //    dd('2');
-        //    ->get();
-       //    ->get();
            
         }elseif(!is_null($search_keyword)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
            ->where('products.product_name', 'LIKE', "%$search_keyword%")
-        //    ->where('companies.id', 'LIKE', "%$search_maker%")
             ->simplepaginate(10);
-        //    ->get();
-        // dd('3');
         }
            return $products;
     }

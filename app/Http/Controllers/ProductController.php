@@ -25,10 +25,9 @@ class ProductController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     
-       // 一覧表示  
+    // 一覧表示  
     public function index(Request $request)
     {
-
         $model = new Products();
         $companymodel = new Companies();
         $companies = $companymodel->getList();
@@ -38,7 +37,6 @@ class ProductController extends Controller
         //$products = new Products();
         //$company = new Companies();
         //$products = $products->SearchList($search_keyword,$search_maker);
-
         // if($search_keyword==='' && $search_maker===''){
         if (is_null($search_keyword) && is_null($search_maker)) {
             $products = $model->getList();
@@ -56,51 +54,33 @@ class ProductController extends Controller
 
     // 新規登録画面に遷移
     public function productNewRegister() {
-
         $model = new Companies();
         $companies = $model->getList();
         // dd($companies );
         return view('product_new_register',['companies' => $companies] );
-
     }
  
-
     // 新規登録処理
-      public function productNewRegistSubmit(ProductNewRegisterRequest $request){
-
+    public function productNewRegistSubmit(ProductNewRegisterRequest $request){
+        $model = new Products();
         // トランザクション開始
         DB::beginTransaction();
-        if($request->hasFile('img_path')){
-                    //①画像ファイルの取得
-                    $img_path = $request->file('img_path');
-
-                    //②画像ファイルのファイル名を取得
-                    $file_name = $img_path->getClientOriginalName();
-                    // dd($file_name);
-                    //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
-                    $img_path->storeAs('public/images', $file_name);
-                    // dd( $img_path);
-                    //④データベース登録用に、ファイルパスを作成
-                    $img_path = 'storage/images/'.$file_name;
-                    // dd( $img_path);
-                    
-
-        $model = new Products();
-        $model->registproduct($request,$img_path);
-    }else{
-        $model = new Products();
-        $model->registproduct2($request);  
-    }
-        // dd($model );
         try {
-      
-            // 登録処理呼び出し
-        //    dd($img_path );
-        //    $model = new Products();
-
-            //  dd($img_path );
-            // $model->registImg($img_path);
-            //  dd($img_path );
+            if($request->hasFile('img_path')){
+                //①画像ファイルの取得
+                $img_path = $request->file('img_path');
+                //②画像ファイルのファイル名を取得
+                $file_name = $img_path->getClientOriginalName();
+                //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
+                $img_path->storeAs('public/images', $file_name);
+                // dd( $img_path);
+                //④データベース登録用に、ファイルパスを作成
+                $img_path = 'storage/images/'.$file_name;
+                // dd( $img_path);
+                $model->registproduct($request,$img_path);
+            }else{
+                $model->registproduct2($request);  
+            }
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -111,8 +91,7 @@ class ProductController extends Controller
           return redirect(route('product_new_register'));
       }
 
-       // 詳細画面表示 
-
+    // 詳細画面表示 
     public function productDetailsInformation($id) {
         $model = new Products();
         $products = $model->getProductById($id);
@@ -122,9 +101,9 @@ class ProductController extends Controller
 
     }
 
-       // 詳細編集画面表示
-
+    // 詳細編集画面表示
     public function productInformationEdit($id) {
+
         $model = new Products();
         $products =  $model->getProductById($id);
         // dd($products );
@@ -132,96 +111,58 @@ class ProductController extends Controller
         $model2 = new Companies();
         $companies = $model2->getList();
         // dd($companies );
-
         return view('product_information_edit' , ['products' => $products], ['companies' => $companies]);
-
     }
 
-      // 詳細編集投稿機能！
-      
+    // 詳細編集投稿機能
     public function productDetailsInformationUpdate(ProductNewRegisterRequest $request, $id) {
-    
-//         if($request->hasFile('img_path')){
-//             //①画像ファイルの取得
-//             $img_path = $request->file('img_path');
-//             //②画像ファイルのファイル名を取得
-//             $file_name = $img_path->getClientOriginalName();
-//             // dd($file_name);
-//             //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
-//             $img_path->storeAs('public/images', $file_name);
-//             // dd( $img_path);
-//             //④データベース登録用に、ファイルパスを作成
-//             $img_path = 'storage/images/'.$file_name;
-//             // dd( $img_path);
-            
-// }
-        // $model = new Products();
-        // $products =  $model->getProductById($id);
-
-        // $products = Products::find($id);
-        // $update = $this->products->update($request, $products);
-
-        // return view('product_details_information_update' , ['products' => $products]);
-
-        $products = Products::find($id);
-        if($request->hasFile('img_path')){
-            //①画像ファイルの取得
-            $img_path = $request->file('img_path');
-
-            //②画像ファイルのファイル名を取得
-            $file_name = $img_path->getClientOriginalName();
-            // dd($file_name);
-            //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
-            $img_path->storeAs('public/images', $file_name);
-            // dd( $img_path);
-            //④データベース登録用に、ファイルパスを作成
-            $img_path = 'storage/images/'.$file_name;
-            // dd( $img_path);       
-
-        $products->productDetailsInformationUpdate($request, $products,$img_path);
-        }else{
-        $products->productDetailsInformationUpdate2($request, $products);
+        try {
+            $products = Products::find($id);
+            if($request->hasFile('img_path')){
+                //①画像ファイルの取得
+                $img_path = $request->file('img_path');
+                //②画像ファイルのファイル名を取得
+                $file_name = $img_path->getClientOriginalName();
+                // dd($file_name);
+                //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
+                $img_path->storeAs('public/images', $file_name);
+                // dd( $img_path);
+                //④データベース登録用に、ファイルパスを作成
+                $img_path = 'storage/images/'.$file_name;
+                // dd( $img_path);       
+            $products->productDetailsInformationUpdate($request, $products,$img_path);
+            }else{
+            $products->productDetailsInformationUpdate2($request, $products);
+            }
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back();
         }
-       
-        $companies = $products ->getList();
-        //         $model = new Products();
-        // $products =  $model->getProductById($id);
-        // dd($products );
           // 画面にリダイレクト
           return redirect()->route('product_information_edit',['id' => $products-> id ]);
       }
 
-        /**
-     * 削除処理
-     */
-    // public function destroy($id)
-    // {
-    //     // 指定されたIDのレコードを削除
-    //     $products = $this->products->deleteproductById($id);
-    //     // 削除したら一覧画面にリダイレクト
-    //     return redirect()->route('product_list');
-    // }
-
-            // 削除機能
-        public function delete($id)
-        {
+    // 削除機能
+    public function delete($id) {
+            try {
             // 指定されたIDのレコードを削除
             $product = Products::find($id);
             $product->delete(); 
             // 削除したら一覧画面にリダイレクト
+            } catch (\Exception $e) {
+                DB::rollback();
+                return back();
+            }
             return redirect()->route('product_list');
         }
 
-        // 検索機能
-        public function search(ProductNewRegisterRequest $request){
+    // 検索機能
+    public function search(ProductNewRegisterRequest $request){
             $search_keyword = $request->input('searchKeyword');
             $search_maker = $request->input('searchMaker');
-            // $company_name=$request->input('company_name');
             $products = new Products();
-            // $company = new Companies();
             $products = $products->SearchList($search_keyword,$search_maker);      
             return view('product_list', ['search_keyword'=>$search_keyword,'search_maker'=>$search_maker]);
         }
     
-
 }

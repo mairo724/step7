@@ -2,8 +2,8 @@
 
 html {
      font-family:”ヒラギノ角ゴ Pro W3″,”ＭＳ Ｐゴシック”,sans-serif;
-     background-color: rgb(243, 237, 236);
-     /* background-color: rgb(255, 255, 255); */
+     /* background-color: rgb(243, 237, 236); */
+     background-color: rgb(255, 255, 255);
      /* background-color: rgb(163, 111, 109); */
      /* background-image: url(../img/cola.png); */
      /* background-size: 100% 100%; */
@@ -160,11 +160,11 @@ tr{
    background-size: auto 130%; 
 } */
 body{    background-color: #f8fafc00;
-   background-image: url(../img/back.png);
+   background-image: url(../img/back.png),  linear-gradient(45deg, rgba(243, 196, 170, 1), rgba(228, 81, 154, 1) 50%, rgb(171, 175, 255));
    /* background-color: rgb(75, 75, 75); */
-     background-color: rgb(169, 71, 71); 
+     /* background-color: rgb(169, 71, 71);  */
   background-blend-mode:lighten;
-   background-size: auto 60%; 
+   background-size: auto 100%; 
 }
 
 .card{

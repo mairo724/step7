@@ -58,14 +58,14 @@
 								</div>
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">価格<span class="required">*</span></span>
-									<input type="number" class="form-control col-sm-10" id="price" name="price" value="{{ $products -> price }}" placeholder="価格">
+									<input type="number" class="form-control col-sm-10 no-spin" id="price" name="price" value="{{ $products -> price }}" placeholder="価格">
 									@if($errors->has('price'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('price') }}</span>
 									@endif
 								</div>   
 								<div class="form-group form-inline input-group-sm">
 									<span class="col-md-2 text-md-right">在庫数<span class="required">*</span></span>
-									<input type="number" class="form-control col-sm-10" id="stock" name="stock" value="{{$products -> stock}}" placeholder="在庫数">
+									<input type="number" class="form-control col-sm-10 no-spin" id="stock" name="stock" value="{{$products -> stock}}" placeholder="在庫数">
 									@if($errors->has('stock'))     
 										<span class="col-sm-10 text-danger small">{{ $errors->first('stock') }}</span>
 									@endif

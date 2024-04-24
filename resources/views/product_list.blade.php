@@ -36,9 +36,34 @@
                                                             @endforeach
                                             </select>
                                         </div>
-                                                        <!-- <button type="button" id="submit" class="btn btn-light">検索</button> -->
+
+                                        <div class="form-group form-inline input-group-sm searchflex price-input">
+                                            <div class="min-price">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 no-spin" name="min-price" id="min-price" placeholder="価格下限" maxlength="7">
+                                            </div>
+                                            <div class="vertical-middle">{{ __('円')}}</div>
+                                            <div class="vertical-middle">{{ __('〜')}}</div>
+                                            <div class="max-price">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="max-price" id="max-price" placeholder="価格上限" maxlength="7">
+                                            </div>
+                                            <div class="vertical-middle">{{ __('円')}}</div>
+                                        </div>
+
+                                        <div class="form-group form-inline input-group-sm searchflex store-input">
+                                            <div class="min-store">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="min-store" id="min-store" placeholder="在庫下限" maxlength="7">
+                                            </div>
+                                            <div class="vertical-middle">{{ __('本')}}</div>
+                                            <div class="vertical-middle">{{ __('〜')}}</div>
+                                            <div class="max-store">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="max-store" id="max-store" placeholder="在庫上限" maxlength="7">
+                                            </div>
+                                            <div class="vertical-middle">{{ __('本')}}</div>
+                                        </div>
+
                                         <div>
-                                            <input type="submit" class="btn btn-light" value="検索">
+                                        <!-- <input type="image" src="../public/img/Seach.png" alt="検索する"> -->
+                                            <input type="submit" class="btn btn-outline-secondary" value="検索">
                                         </div>
                                                         <!-- <div>
                                                         <input type="button" onclick="location.href='{{ route('product_list') }}'" class="btn btn-light" value="一覧表示">
@@ -47,17 +72,17 @@
                             </form>
                         </div>
                         <!-- 検索機能ここまで -->
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="fav-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th class="img_pos">商品画像</th>
+                                    <th class="sorter-false">商品画像</th>
                                     <th>商品名</th>
                                     <th>価格</th>
                                     <th>在庫数</th>
                                     <th>メーカー名</th>
-                                    <th class="btn_width"></th>
-                                    <th class="new-btn btn_width btn_adj"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-dark">新規登録</button></th>
+                                    <th class="btn_width sorter-false sorter-border-light"></th>
+                                    <th class="new-btn btn_width btn_adj sorter-false sorter-border-light"><button type="button" onclick="location.href='{{ route('product_new_register') }}'" id="submit" class="btn btn-dark">新規登録</button></th>
                                 </tr>    
                             </thead>
                             <tbody>
@@ -65,7 +90,7 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                             @if( $product->img_path==NULL)
-                                            <td class="img_list img_pos"><img src="../public/img/ni.png"></td>
+                                            <td class="img_list img_pos"><img src="../public/img/no_image.png"></td>
                                             @else
                                             <td class="img_list img_pos"><img src="{{ asset($product->img_path) }}"></td>
                                             @endif
@@ -87,9 +112,7 @@
                                 @endforeach                           
                             </tbody> 
                         </table>
-                        <div>
-                            <div>{{ $products->links() }}</div>
-                        </div>
+                    
                     </div>          
                 </div>
             </div>

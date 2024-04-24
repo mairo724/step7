@@ -2,7 +2,7 @@
 
 
     .card  {
-     height: 80vh;
+     height: 83vh;
      background-color: rgb(255, 255, 255);
     }
     p:nth-child(2n+1) {
@@ -45,4 +45,63 @@
 
   .imgflex{
    display: flex;
+}
+
+@media screen and (max-width:480px) { 
+   html {
+      font-size: 14px;
+   }
+
+   .search {
+      margin-top: 0px;
+      margin-bottom: 0px;
+  }
+
+   .card  {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding:0 ;
+      background-color: rgb(255, 255, 255);}
+      py-4 {
+         padding-top: -0.5rem !important;
+         padding-bottom: -0.5rem !important;
+     }
+      .card-body {
+         padding: 17px;
+      }
+      .row>* {
+         flex-shrink: 0;
+         width: 100%;
+         max-width: 100%;
+         padding-right: calc(var(--bs-gutter-x)* .0);
+         padding-left: calc(var(--bs-gutter-x)* .0);
+         margin-top: var(--bs-gutter-y);
+     }
+     px-4 {
+      padding-right: 0.1rem !important;
+      padding-left: 0.1rem !important;
+  }
+  .table>:not(caption)>*>* {
+   padding: 0.2rem;}
+   th {
+      font-size: 12px;
+      padding: 0em;
+  }
+
+   .py-2 {
+      font-size: 0.7em;
+      margin-top: 10px;
+      padding-top: .1rem !important;
+      padding-bottom: .1rem !important;
+  }
+  .btn {
+   --bs-btn-padding-x: 0.3rem;
+   --bs-btn-padding-y: 0.2rem;
+   --bs-btn-font-size: .8rem;
+}
+.btn_width {
+   width: 45px;
+}
+
 }

@@ -1,11 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-@push('styles')
-<link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-@endpush
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -58,9 +53,6 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                            <button onclick="location.href='../public/register'" class="btn btn-primary">
-                                    {{ __('register') }}
-                            </button>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>

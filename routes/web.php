@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Auth::routes();
+// Auth::routes();
 
 
 // 一覧画面の表示
@@ -34,3 +34,9 @@ Route::get('/product_details_information/{id}', [App\Http\Controllers\ProductCon
 Route::get('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productInformationEdit'])->name('product_information_edit');
 // 詳細画面の更新処理
 Route::post('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productDetailsInformationUpdate'])->name('product_details_information_update');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('product_list');
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

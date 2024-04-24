@@ -30,7 +30,8 @@ class Products extends Model
         $products = DB::table('products')
         ->join('companies', 'products.company_id','=','companies.id')
         ->select('products.*', 'companies.company_name')
-        ->simplepaginate(10);
+        ->get();
+        // ->paginate(10);
         return $products;
     }
      // productsテーブルのcompany_id'とcompaniesテーブルのidを結合してproductsテーブルのIDと$idを紐づけて合致したものの最初の一行をとる
@@ -186,21 +187,23 @@ class Products extends Model
            ->select('products.*','companies.company_name')
            ->where('products.product_name', 'LIKE', "%$search_keyword%")
            ->where('companies.id', 'LIKE', "%$search_maker%")
-           ->simplepaginate(10);
+           ->get();
+        //    ->paginate(10);
 
         }elseif(!is_null($search_maker)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
            ->where('companies.id', 'LIKE', "%$search_maker%")
-           ->simplepaginate(10);
+           ->get();
+        //    ->paginate(10);
            
         }elseif(!is_null($search_keyword)){
            $products=DB::table('products')
            ->join('companies','products.company_id','=','companies.id')
            ->select('products.*','companies.company_name')
            ->where('products.product_name', 'LIKE', "%$search_keyword%")
-            ->simplepaginate(10);
+            ->paginate(10);
         }
            return $products;
     }

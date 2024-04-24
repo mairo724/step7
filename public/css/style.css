@@ -3,14 +3,16 @@
 html {
      font-family:”ヒラギノ角ゴ Pro W3″,”ＭＳ Ｐゴシック”,sans-serif;
      /* background-color: rgb(243, 237, 236); */
-     background-color: rgb(255, 255, 255);
+     /* background-color: rgba(255, 255, 255, 0.483); */
      /* background-color: rgb(163, 111, 109); */
      /* background-image: url(../img/cola.png); */
      /* background-size: 100% 100%; */
     }
-
+   main{
+      height:89vh;
+   }
     .card  {
-     height: 80vh;
+     /* height: 83vh; */
      background-color: rgb(255, 255, 255);
     }
     p:nth-child(2n+1) {
@@ -34,9 +36,13 @@ html {
   }
 
   th{
-     padding: 0.6em;
+     padding: 60em;
+     border-right: solid 2px rgb(255, 255, 255);
   }
-  tr{vertical-align: baseline;}
+
+  tr{
+   vertical-align: baseline;
+}
 
   .searchflex{
    display: flex;
@@ -125,7 +131,36 @@ select{
 }
 
 .search_keyword, .search_maker{
-   width: 200px;
+   width: 150px;
+   padding-right: 1em;
+   margin-left: 0.4em;
+}
+
+.price-input, .store-input{
+   padding-right: 1em;
+   margin-left: 0.4em;
+}
+
+.min-price, .max-price, .min-store, .max-store{
+   width: 75px;
+}
+
+.no-spin::-webkit-inner-spin-button,
+.no-spin::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance:textfield;
+}
+
+.vertical-middle {
+   padding: 6px 3px;
+   font-size: 12px;
+}
+
+.form-control {
+   padding: 0.25rem .5rem;
+   font-size: .7875rem;
+   border-radius: var(--bs-border-radius-sm);
 }
 
 thead{
@@ -165,11 +200,12 @@ body{    background-color: #f8fafc00;
      /* background-color: rgb(169, 71, 71);  */
   background-blend-mode:lighten;
    background-size: auto 100%; 
+   background-attachment: fixed;
 }
 
 .card{
    background-color: rgba(255, 255, 255);
-      --bs-card-spacer-y: 1rem;
+      --bs-card-spacer-y: 3rem;
       --bs-card-spacer-x: 2.8rem;
 }
 
@@ -186,3 +222,146 @@ body{    background-color: #f8fafc00;
 .img_pos{
    text-align: center;
 }
+/* ペジネーション */
+svg {
+   vertical-align: middle;
+   width: 25px;
+}
+p:nth-child(2n+1) {
+   background-color: #d1bafc;
+}
+
+.px-4 {
+   padding-right: 0.5rem !important;
+   padding-left: 0.5rem !important;
+}
+
+a {
+   color: rgb(202 55 162);
+   text-decoration: underline;
+}
+.border {
+   border: solid,rgba(255, 255, 255, 0) 0px;
+}
+p {
+   margin-top: 0;
+   margin-bottom: 0rem;
+}
+p:nth-child(2n+1) {
+   display: none;
+   background-color: #d1bafc;
+}
+
+.icon_img{
+   width: 20px;
+   border: none;
+}
+
+.col-md-8 {
+   flex: 0 0 auto;
+   width: 80%;
+}
+
+.card {
+   background-color: rgba(255, 255, 255);
+   --bs-card-spacer-y: 3rem;
+   --bs-card-spacer-x: 4.8rem;
+}
+
+.tablesorter-default .header, .tablesorter-default .tablesorter-header {
+   background-color: #f1f0f1a8;
+   background-position: center right;
+   background-repeat: no-repeat;
+   cursor: pointer;
+   white-space: normal;
+   /* padding: -1px 2px 4px 2px; */
+}
+
+.sorter-false {
+   background-image: none;
+}
+.sorter-border-light {
+   border-right: #b2b2b2;
+}
+
+.tablesorter-default td {
+   background-color: #fff;
+   border-bottom: #ccc 1px solid;
+   padding: 5px;
+   vertical-align: middle;
+}
+
+.btn {
+   --bs-btn-padding-x: 0.4rem;
+   --bs-btn-padding-y: 0.275rem;
+}
+
+@media screen and (max-width:480px) { 
+   html {
+      font-size: 14px;
+   }
+
+   .search {
+      margin-top: 0px;
+      margin-bottom: 0px;
+  }
+
+   .card  {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      padding:0 ;
+      background-color: rgb(255, 255, 255);}
+      py-4 {
+         padding-top: -0.5rem !important;
+         padding-bottom: -0.5rem !important;
+     }
+      .card-body {
+         padding: 17px;
+      }
+      .row>* {
+         flex-shrink: 0;
+         width: 100%;
+         max-width: 100%;
+         padding-right: calc(var(--bs-gutter-x)* .0);
+         padding-left: calc(var(--bs-gutter-x)* .0);
+         margin-top: var(--bs-gutter-y);
+     }
+     px-4 {
+      padding-right: 0.1rem !important;
+      padding-left: 0.1rem !important;
+  }
+  .table>:not(caption)>*>* {
+   padding: 0.2rem;}
+   th {
+      font-size: 12px;
+      padding: 0em;
+  }
+
+   .py-2 {
+      font-size: 0.7em;
+      margin-top: 10px;
+      padding-top: .1rem !important;
+      padding-bottom: .1rem !important;
+  }
+  .btn {
+   --bs-btn-padding-x: 0.3rem;
+   --bs-btn-padding-y: 0.2rem;
+   --bs-btn-font-size: .8rem;
+}
+.btn_width {
+   width: 45px;
+}
+
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+   .container-lg, .container-md, .container-sm, .container {
+      max-width: 1024px;
+  }
+  
+
+}
+@media screen and (min-width:1024px) {
+ 
+} 

@@ -183,7 +183,7 @@ class Products extends Model
         // if($search_keyword!==''&&$search_maker!==''){
 
 
-    // 一旦消す６/15ー☆ まとめて記載
+    // 一旦消す まとめて記載
 
     // $query=
         // if(!is_null($search_keyword) && !is_null($search_maker)){
@@ -211,41 +211,38 @@ class Products extends Model
         //    ->get();
             // ->paginate(10);
         // }
-$query = DB::table('products')
-    ->join('companies', 'products.company_id', '=', 'companies.id')
-    ->select('products.*', 'companies.company_name');
+        $query = DB::table('products')
+            ->join('companies', 'products.company_id', '=', 'companies.id')
+            ->select('products.*', 'companies.company_name');
 
-if ($search_keyword) {
-    $query->where('products.product_name', 'LIKE', '%' . $search_keyword . '%');
-}
+        if ($search_keyword) {
+            $query->where('products.product_name', 'LIKE', '%' . $search_keyword . '%');
+        }
 
-if ($search_maker) {
-    $query->where('companies.id', 'LIKE', '%' . $search_maker . '%');
-}
+        if ($search_maker) {
+            $query->where('companies.id', 'LIKE', '%' . $search_maker . '%');
+        }
 
+        if ($search_min_price) {
+            $query->where('products.price', '>=', $search_min_price);
+        }
 
-if ($search_min_price) {
-    $query->where('products.price', '>=', $search_min_price);
-}
+        if ($search_max_price) {
+            $query->where('products.price', '<=', $search_max_price);
+        }
 
-if ($search_max_price) {
-    $query->where('products.price', '<=', $search_max_price);
-}
+        if ($search_min_store) {
+            $query->where('products.stock', '>=', $search_min_store);
+        }
 
-if ($search_min_store) {
-    $query->where('products.stock', '>=', $search_min_store);
-}
+        if ($search_max_store) {
+            $query->where('products.stock', '<=', $search_max_store);
+        }
 
-if ($search_max_store) {
-    $query->where('products.stock', '<=', $search_max_store);
-}
-
-$products = $query->get(); 
+        $products = $query->get(); 
 
            return $products;
     }
-
-
 
     //  // 検索情報を取得
     //  public function getProductsByCondition($id) {

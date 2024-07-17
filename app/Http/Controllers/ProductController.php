@@ -65,27 +65,27 @@ class ProductController extends Controller
     // 一覧表示  
     public function search(Request $request)
     {
-    $model = new Products();
-    $companymodel = new Companies();
-    $companies = $companymodel->getList();
-    $search_keyword = $request->input('searchKeyword');
-    $search_maker = $request->input('searchMaker');
-    $search_max_price = $request->input('maxPrice');
-    $search_min_price = $request->input('minPrice');
-    $search_max_store = $request->input('maxStore');
-    $search_min_store = $request->input('minStore');
-    //$company_name=$request->input('company_name');
-    //$products = new Products();
-    //$company = new Companies();
-    //$products = $products->SearchList($search_keyword,$search_maker);
-    // if($search_keyword==='' && $search_maker===''){
-    if (is_null($search_keyword) && is_null($search_maker) && is_null($search_max_price) && is_null($search_min_price) && is_null($search_max_store) && is_null($search_min_store))  {
-        $products = $model->getList();
-        // dd('一覧');
-    //     return view('product_list', ['products' => $products, 'companies' => $companies, 'search_keyword'=>$search_keyword,'search_maker'=>$search_maker,'search_max_price'=>$search_max_price,'search_min_price'=>$search_min_price,'search_max_store'=>$search_max_store,'search_min_store'=>$search_min_store]); 
-    return response()->json($products);     
+        $model = new Products();
+        $companymodel = new Companies();
+        $companies = $companymodel->getList();
+        $search_keyword = $request->input('searchKeyword');
+        $search_maker = $request->input('searchMaker');
+        $search_max_price = $request->input('maxPrice');
+        $search_min_price = $request->input('minPrice');
+        $search_max_store = $request->input('maxStore');
+        $search_min_store = $request->input('minStore');
+        //$company_name=$request->input('company_name');
+        //$products = new Products();
+        //$company = new Companies();
+        //$products = $products->SearchList($search_keyword,$search_maker);
+        // if($search_keyword==='' && $search_maker===''){
+        if (is_null($search_keyword) && is_null($search_maker) && is_null($search_max_price) && is_null($search_min_price) && is_null($search_max_store) && is_null($search_min_store))  {
+            $products = $model->getList();
+            // dd('一覧');
+        //     return view('product_list', ['products' => $products, 'companies' => $companies, 'search_keyword'=>$search_keyword,'search_maker'=>$search_maker,'search_max_price'=>$search_max_price,'search_min_price'=>$search_min_price,'search_max_store'=>$search_max_store,'search_min_store'=>$search_min_store]); 
+        return response()->json($products);     
 
-}
+    }
     else{
         $products = $model->SearchList($search_keyword,$search_maker,$search_max_price,$search_min_price,$search_max_store,$search_min_store);
         // dd('kennsaku');

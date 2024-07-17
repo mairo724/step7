@@ -19,7 +19,6 @@ $(".search_js").on('click', function () {
     // if (!searchMaker) {
     //     return false;
     // } 
-    
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -27,12 +26,7 @@ $(".search_js").on('click', function () {
         type: 'GET',
         url: 'product_list_search', //後述するweb.phpのURLと同じ形にする
         data: $('form').serialize(),
-        // data: 
-        // {
-        //     'searchKeyword': searchKeyword, //ここはサーバーに贈りたい情報。今回は検索ファームのバリューを送りたい。
-        // },
-        //dataType: 'json', //json形式で受け取るとダメだったがtextにしたら通信成功した。??texttypeの意味がわからない？？
-        dataType: 'json', //json形式で受け取るとダメだったがtextにしたら通信成功した。??texttypeの意味がわからない？？
+        dataType: 'json', 
         beforeSend: function () {
             $('.loading').removeClass('display-none');
         } //通信中の処理をここで記載。今回はぐるぐるさせるためにcssでスタイルを消す。
@@ -117,9 +111,6 @@ $(".search_js").on('click', function () {
     // });
 });
 
-
-
-
 //削除機能
 
 // $('body').on('click', '#del_js', function () {
@@ -145,15 +136,13 @@ $(".search_js").on('click', function () {
 //     });
 // });
 
-
-
   $(function() {
     $('body').on('click', '.del_js', function () {
         console.log($(this));
         var id = $(this)[0].id;
         // var id = $(this)[0][1].id;
         // var id = $(this).id;
-    var deleteConfirm = confirm(id+'削除してよろしいですか？');
+    var deleteConfirm = confirm('ID:'+id+' 削除してよろしいですか？');
     if(deleteConfirm == true) {    
         
         $.ajaxSetup({
@@ -178,7 +167,7 @@ $(".search_js").on('click', function () {
             // alert('成功:' + {{ $form->id }});
 
             // 通信成功時の処理
-                            alert('削除しました:');
+            alert('削除しました:');
             console.log("results : " + results);        
             // window.location.href = "/";     //削除後に画面を遷移
 
@@ -224,7 +213,6 @@ $(".search_js").on('click', function () {
 //         }
 //     });
 // });
-
 
 //ソート機能
  $(document).ready(function() {

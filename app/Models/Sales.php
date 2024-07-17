@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class Sales extends Model
 {
-    public function getList() {
-        // productsテーブルからデータを取得
-        $products = DB::table('products')->get();
+    use HasFactory;
 
-        return $products;
-    }
+    protected $fillable = [
+        'product_id',
+        'product_name',
+        'stock'
+    ];
 }

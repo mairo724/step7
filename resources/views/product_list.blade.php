@@ -16,13 +16,17 @@
                         <div>
                             <form action="{{ route('product_list') }}" method="GET" class="form">      
                             @csrf
+                            <!-- <form class="form" id="search">  -->
                                 <div class="search searchflex">    
                                         <div class="form-group form-inline input-group-sm search_keyword">
-                                            <input type='text' id="searchKeyword"  name="searchKeyword" class="form-control col-sm-10"  value="{{ $search_keyword}}" placeholder="検索キーワード">
+                                            <input type='text' id="searchKeyword"  name="searchKeyword" class="form-control col-sm-10"  value="{{$search_keyword}}" placeholder="検索キーワード">
                                             <span class="col-sm-2"></span>
                                         </div>
                                         <div class="form-group form-inline input-group-sm select-wrap-list search_maker">
-                                            <select name="searchMaker" id="myselect" class="form-control">
+                                            <select name="searchMaker" id="searchMaker" class="form-control">
+                                                
+                                         
+                                           
                                                     <label for="company_name">{{ __('メーカー名')}}<span class="badge badge-danger ml-2"></span></label>
                                                         <option value="">メーカー名</option>
                                                             @foreach ( $companies as $company)
@@ -39,31 +43,33 @@
 
                                         <div class="form-group form-inline input-group-sm searchflex price-input">
                                             <div class="min-price">
-                                                <input type="number" autocomplete="off" class="form-control col-sm-10 no-spin" name="min-price" id="min-price" placeholder="価格下限" maxlength="7">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 no-spin" name="minPrice" id="minPrice" placeholder="価格下限" maxlength="7">
                                             </div>
                                             <div class="vertical-middle">{{ __('円')}}</div>
                                             <div class="vertical-middle">{{ __('〜')}}</div>
                                             <div class="max-price">
-                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="max-price" id="max-price" placeholder="価格上限" maxlength="7">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="maxPrice" id="maxPrice" placeholder="価格上限" maxlength="7">
                                             </div>
                                             <div class="vertical-middle">{{ __('円')}}</div>
                                         </div>
 
                                         <div class="form-group form-inline input-group-sm searchflex store-input">
                                             <div class="min-store">
-                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="min-store" id="min-store" placeholder="在庫下限" maxlength="7">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="minStore" id="minStore" placeholder="在庫下限" maxlength="7">
                                             </div>
                                             <div class="vertical-middle">{{ __('本')}}</div>
                                             <div class="vertical-middle">{{ __('〜')}}</div>
                                             <div class="max-store">
-                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="max-store" id="max-store" placeholder="在庫上限" maxlength="7">
+                                                <input type="number" autocomplete="off" class="form-control col-sm-10 price input no-spin" name="maxStore" id="maxStore" placeholder="在庫上限" maxlength="7">
                                             </div>
                                             <div class="vertical-middle">{{ __('本')}}</div>
                                         </div>
 
                                         <div>
                                         <!-- <input type="image" src="../public/img/Seach.png" alt="検索する"> -->
-                                            <input type="submit" class="btn btn-outline-secondary" value="検索">
+                                        <input type="button" class="search_js btn btn-outline-secondary" value="検索" name="search">
+                                         <!-- <input type="submit" class="search_js btn btn-outline-secondary" value="検索"> -->
+                                         <!-- <button class="search_js btn btn-outline-secondary" value="検索">検索</button> -->
                                         </div>
                                                         <!-- <div>
                                                         <input type="button" onclick="location.href='{{ route('product_list') }}'" class="btn btn-light" value="一覧表示">
@@ -101,10 +107,12 @@
                                         <td>{{ $product->company_name }}</td>
                                         <td class="btn_adj"><a href="{{ route('product_details_information', ['id'=>$product->id]) }}" class="btn btn-outline-primary">詳細</a></td>
                                         <td class="btn_adj">
-                                            <form action="{{ route('product_delete', ['id'=>$product->id]) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-outline-danger" value="削除" onclick='return confirm("本当に削除しますか？")'>削除</button>
-                                            </form>
+                                            <!-- <form class="del_js"> -->
+                                            <!-- <form id="del_js" action="{{ route('product_delete', ['id'=>$product->id]) }}" method="POST"> -->
+                                                <!-- @csrf -->
+                                                <button class="del_js btn btn-outline-danger" id="{{ $product->id }}" value="削除">削除</button>
+                                                <!-- <button type="submit" class="btn btn-outline-danger" value="削除" onclick='return confirm("本当に削除しますか？")'>削除</button> -->
+                                            <!-- </form> -->
                                                 <!-- <button type="button" onclick="location.href='{{ route('product_delete', ['id'=>$product->id])  }}'" id="submit" class="btn btn-danger" method="POST">削除</button></th> -->
                                                 <!-- <button type="submit" class="btn btn-danger">削除</button> -->   
                                         </td>

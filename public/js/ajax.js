@@ -25,15 +25,15 @@ $(".search_js").on('click', function () {
           },
         type: 'GET',
         url: 'product_list_search', //後述するweb.phpのURLと同じ形にする
-        data: $('form').serialize(),
+        data: $('form').serialize(),//合っているか確認する
         dataType: 'json', 
         beforeSend: function () {
             $('.loading').removeClass('display-none');
         } //通信中の処理をここで記載。今回はぐるぐるさせるためにcssでスタイルを消す。
     }).done(function (data) { //ajaxが成功したときの処理
         $('.loading').addClass('display-none'); //通信中のぐるぐるを消す
-
-        let $tbody = $('#fav-table tbody');
+        // let $tbody = $('tbody');
+        let $tbody = $('#fav-table tbody'); //↑でも動く
         $tbody.empty();
         $.each(data, function (index, value) {
             let row = `
@@ -57,13 +57,16 @@ $(".search_js").on('click', function () {
                 </td>
                 </tr>
             `;
-            $tbody.append(row);
+            $tbody.append(row);  
         });
-
+        // 再度適用しないと動かない
+        $('#fav-table').trigger('update');
+    
         // 検索結果がなかったときの処理
         if (data.length === 0) {
             $tbody.append('<tr><td colspan="5" class="text-center">製品が見つかりません</td></tr>');
         }
+        
     }).fail(function (jqXHR, textStatus, errorThrown) {
         console.error('エラー:', jqXHR.status, textStatus, errorThrown.message);
         alert('失敗');
@@ -214,7 +217,7 @@ $(".search_js").on('click', function () {
 //     });
 // });
 
-//ソート機能
+//ソート機能 ？位置について確認
  $(document).ready(function() {
     $('#fav-table').tablesorter();
 });

@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// 購入処理のAPI
+Route::post('/orders', [App\Http\Controllers\OrderController::class, 'placeOrder']);
+// 購入処理のAPIをpostmanでチェックする時に必要なキーを発行するためのもの
+Route::get('/testorders', [App\Http\Controllers\OrderController::class, 'testOrder']);

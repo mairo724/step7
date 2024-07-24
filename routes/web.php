@@ -35,12 +35,10 @@ Route::get('/product_details_information/{id}', [App\Http\Controllers\ProductCon
 Route::get('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productInformationEdit'])->name('product_information_edit');
 // 詳細画面の更新処理
 Route::post('/product_information_edit/{id}', [App\Http\Controllers\ProductController::class, 'productDetailsInformationUpdate'])->name('product_details_information_update');
-// 購入処理のAPI
-Route::post('/orders', [App\Http\Controllers\OrderController::class, 'placeOrder']);
-// 購入処理のAPIをpostmanでチェックする時に必要なキーを発行するためのもの
-Route::get('/testorders', [App\Http\Controllers\OrderController::class, 'testOrder']);
+// ログイン後に一覧画面に遷移s
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-//?? Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('product_list');
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
